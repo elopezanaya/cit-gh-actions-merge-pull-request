@@ -32,8 +32,8 @@ jobs:
           commit_message : ${{ github.event.inputs.commit_message }}
       - name : PrintOutput
         run: | 
-          echo "The PR number is ${{ steps.sendPR.outputs.pull_request_number }}"
-          echo "The PR url is ${{ steps.sendPR.outputs.pull_request_url }}"
-          echo "The PR ID is ${{ steps.sendPR.outputs.pull_request_id }}"
+          echo "SHA ${{ steps.mergePR.outputs.sha }}"
+          echo "status :  ${{ steps.mergePR.outputs.merged }}"
+          
 
 
