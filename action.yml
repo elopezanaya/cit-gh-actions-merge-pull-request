@@ -1,0 +1,48 @@
+name: 'CIT : Merge an speciffic PR'
+description: "Merge a PR"
+author: "elopezanaya"
+
+# Add your action's branding here. This will appear on the GitHub Marketplace.
+branding:
+  icon: 'cloud-rain'
+  color: 'red'
+
+# Define your inputs here.
+inputs:
+
+  owner:
+    description: 'Owner of the repository'
+    required: true
+  
+  repo:
+    description: 'Name of the repository'
+    required: true
+  
+  token:
+    description: 'GITHUB_TOKEN'
+    default: ${{ github.token }}s
+  
+  author:
+    description: 'Author of the changes'
+    required: true
+  
+  pull_number:
+    description: "Id of the PR to be merged"
+    required: true
+  
+  commit_message:
+    description: "Message to be included as part of the merged"
+    default: "Automatically merge via github-actions"
+
+    
+# Define your outputs here.
+outputs:
+  sha:
+    description: 'SHA of the merge'
+  merged:
+    description: 'state of the result of the merge'
+
+runs:
+  using: node20
+  main: ./dist/index.js
+  
