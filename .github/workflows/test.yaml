@@ -1,0 +1,35 @@
+
+name: 🪅🪅🪅 Launch PR Merger 🪅🪅🪅
+on:
+  workflow_dispatch:
+    inputs:
+        pr_number:
+            type: number
+            description: 'The PR number'
+
+permissions: write-all
+
+jobs:
+  send-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+         
+      - name: Get funky
+        uses: actions/checkout@v4
+      - name: Merge
+        uses: ./
+        id: mergePR
+        with:
+          owner: 'elopezanaya'
+          repo: 'cit-gh-actions-merge-pull-request'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          number: ${{ github.event.inputs.pr_number }}
+      - name : PrintOutput
+        run: | 
+          echo "The PR number is ${{ steps.sendPR.outputs.pull_request_number }}"
+          echo "The PR url is ${{ steps.sendPR.outputs.pull_request_url }}"
+          echo "The PR ID is ${{ steps.sendPR.outputs.pull_request_id }}"
+
+
