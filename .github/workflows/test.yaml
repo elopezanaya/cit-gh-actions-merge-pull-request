@@ -6,6 +6,9 @@ on:
         pr_number:
             type: number
             description: 'The PR number'
+        commit_message:
+            type: string
+            description: 'The commit message'
 
 permissions: write-all
 
@@ -25,7 +28,8 @@ jobs:
           repo: 'cit-gh-actions-merge-pull-request'
           token: ${{ secrets.GITHUB_TOKEN }}
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          number: ${{ github.event.inputs.pr_number }}
+          pull_number: ${{ github.event.inputs.pr_number }}
+          commit_message : ${{ github.event.inputs.commit_message }}
       - name : PrintOutput
         run: | 
           echo "The PR number is ${{ steps.sendPR.outputs.pull_request_number }}"
