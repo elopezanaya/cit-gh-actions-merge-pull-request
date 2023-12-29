@@ -7,6 +7,13 @@ export const merge = async (mergePayload: MergePayload) => {
 
     const octokit = new Octokit({ auth: mergePayload.token });
 
+    await octokit.pulls.createReview({
+      owner: mergePayload.owner,
+      repo: mergePayload.repo,
+      pull_number: mergePayload.pull_number,
+      event: "APPROVE",
+    });
+
     const response = await octokit.pulls.merge({
       owner: mergePayload.owner,
       repo: mergePayload.repo,
