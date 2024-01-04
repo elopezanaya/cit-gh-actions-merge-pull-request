@@ -19,8 +19,7 @@ This GitHub Action merges a specific pull request (PR) into a repository.
 
 
 ### Sample
-
-
+```
 name: 🪅🪅🪅 Launch PR Merger 🪅🪅🪅
 on:
   workflow_dispatch:
@@ -57,3 +56,4 @@ jobs:
           echo "SHA ${{ steps.mergePR.outputs.sha }}"
           echo "status :  ${{ steps.mergePR.outputs.merged }}"
           
+```
